@@ -1,7 +1,7 @@
 ---
 title: CoolantIQ
 emoji: 🧪
-colorFrom: cyan
+colorFrom: blue
 colorTo: green
 sdk: docker
 pinned: false
