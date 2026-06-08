@@ -54,60 +54,40 @@
     backdrop-filter: blur(10px);
   }
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
+  .logo { display: flex; align-items: center; gap: 14px; }
 
   .logo-icon {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 1.4rem;
     box-shadow: var(--glow-cyan);
   }
 
   .logo-text h1 {
     font-family: 'Orbitron', monospace;
-    font-size: 1.3rem;
-    font-weight: 900;
+    font-size: 1.3rem; font-weight: 900;
     background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     letter-spacing: 0.1em;
   }
 
   .logo-text span {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-size: 0.7rem; color: var(--text-dim);
+    letter-spacing: 0.2em; text-transform: uppercase;
   }
 
-  .header-status {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+  .header-status { display: flex; align-items: center; gap: 20px; }
 
   .status-dot {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; color: var(--text-secondary);
     font-family: 'Share Tech Mono', monospace;
   }
 
   .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 8px; height: 8px; border-radius: 50%;
     background: var(--accent-green);
     animation: pulse 2s infinite;
   }
@@ -119,141 +99,227 @@
 
   .header-time {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent-cyan);
+    font-size: 0.85rem; color: var(--accent-cyan);
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0; overflow: hidden;
+  }
+
+  .ticker-content {
+    display: inline-block; white-space: nowrap;
+    animation: ticker 30s linear infinite;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; color: var(--accent-cyan); opacity: 0.7;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
   }
 
   /* ── MAIN LAYOUT ── */
   .main {
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1400px; margin: 0 auto;
     padding: 24px 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    display: grid; grid-template-columns: 1fr; gap: 20px;
   }
 
   /* ── CARDS ── */
   .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 16px; padding: 24px;
+    position: relative; overflow: hidden;
   }
 
   .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
     opacity: 0.5;
   }
 
   .card-title {
     font-family: 'Orbitron', monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.75rem; font-weight: 700;
     color: var(--accent-cyan);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    letter-spacing: 0.15em; text-transform: uppercase;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
   }
 
   .card-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
+    content: ''; flex: 1; height: 1px;
     background: linear-gradient(90deg, var(--border), transparent);
   }
 
+  /* ── pH INPUT PANEL (NEW) ── */
+  .ph-panel {
+    display: none;
+    background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,255,136,0.05));
+    border: 2px solid var(--accent-cyan);
+    border-radius: 16px; padding: 28px;
+    text-align: center;
+    box-shadow: var(--glow-cyan);
+    animation: phPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes phPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0,212,255,0.3); }
+    50%       { box-shadow: 0 0 40px rgba(0,212,255,0.6); }
+  }
+
+  .ph-panel.visible { display: block; }
+
+  .ph-panel-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem; font-weight: 900;
+    color: var(--accent-cyan);
+    letter-spacing: 0.15em; margin-bottom: 6px;
+  }
+
+  .ph-panel-subtitle {
+    font-size: 0.85rem; color: var(--text-secondary);
+    margin-bottom: 20px; line-height: 1.5;
+  }
+
+  .ph-session-id {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem; color: var(--accent-green);
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 6px; padding: 4px 12px;
+    display: inline-block; margin-bottom: 20px;
+  }
+
+  .ph-strip-guide {
+    display: flex; justify-content: center; gap: 8px;
+    flex-wrap: wrap; margin-bottom: 20px;
+  }
+
+  .ph-chip {
+    padding: 4px 10px; border-radius: 999px;
+    font-size: 0.7rem; font-weight: 700;
+    font-family: 'Share Tech Mono', monospace;
+    cursor: pointer; transition: transform 0.2s;
+  }
+
+  .ph-chip:hover { transform: scale(1.1); }
+
+  .ph-input-row {
+    display: flex; align-items: center;
+    justify-content: center; gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ph-number-input {
+    width: 120px; padding: 12px 16px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--accent-cyan);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem; font-weight: 700;
+    text-align: center;
+    outline: none;
+    transition: box-shadow 0.3s;
+  }
+
+  .ph-number-input:focus {
+    box-shadow: 0 0 20px rgba(0,212,255,0.5);
+  }
+
+  .ph-submit-btn {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+    color: #000; border: none;
+    padding: 14px 32px; border-radius: 10px;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.1em; cursor: pointer;
+    transition: all 0.3s; box-shadow: var(--glow-cyan);
+  }
+
+  .ph-submit-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0,212,255,0.6); }
+  .ph-submit-btn:active { transform: scale(0.97); }
+  .ph-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .ph-status {
+    margin-top: 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem; color: var(--text-dim);
+    min-height: 20px;
+  }
+
+  /* Sensor data preview inside pH panel */
+  .sensor-preview {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 10px;
+    margin: 16px 0;
+  }
+
+  .sensor-chip {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem; color: var(--text-secondary);
+  }
+
+  .sensor-chip span { color: var(--accent-cyan); font-weight: 700; }
+
   /* ── SCORE DISPLAY ── */
   .score-section {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 30px;
-    align-items: center;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 30px; align-items: center;
   }
 
-  .score-ring {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    flex-shrink: 0;
-  }
-
-  .score-ring svg {
-    transform: rotate(-90deg);
-  }
-
-  .score-ring-bg {
-    fill: none;
-    stroke: var(--border);
-    stroke-width: 8;
-  }
-
+  .score-ring { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring-bg  { fill: none; stroke: var(--border); stroke-width: 8; }
   .score-ring-fill {
-    fill: none;
-    stroke: var(--accent-green);
-    stroke-width: 8;
-    stroke-linecap: round;
-    stroke-dasharray: 352;
-    stroke-dashoffset: 352;
+    fill: none; stroke: var(--accent-green); stroke-width: 8;
+    stroke-linecap: round; stroke-dasharray: 352; stroke-dashoffset: 352;
     transition: stroke-dashoffset 1.5s ease, stroke 0.5s ease;
     filter: drop-shadow(0 0 6px var(--accent-green));
   }
 
   .score-center {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
   }
 
   .score-number {
     font-family: 'Orbitron', monospace;
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--accent-green);
-    line-height: 1;
+    font-size: 2rem; font-weight: 900;
+    color: var(--accent-green); line-height: 1;
   }
 
   .score-label {
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 0.65rem; color: var(--text-dim);
+    letter-spacing: 0.1em; text-transform: uppercase;
   }
 
   .score-details h3 {
     font-family: 'Orbitron', monospace;
-    font-size: 1rem;
-    color: var(--text-primary);
-    margin-bottom: 8px;
+    font-size: 1rem; color: var(--text-primary); margin-bottom: 8px;
   }
 
   .condition-badge {
-    display: inline-block;
-    padding: 4px 14px;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
+    display: inline-block; padding: 4px 14px; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 12px;
   }
 
-  .condition-excellent { background: rgba(0,255,136,0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
-  .condition-good      { background: rgba(0,212,255,0.15); color: var(--accent-cyan);  border: 1px solid var(--accent-cyan); }
+  .condition-excellent { background: rgba(0,255,136,0.15);  color: var(--accent-green);  border: 1px solid var(--accent-green); }
+  .condition-good      { background: rgba(0,212,255,0.15);  color: var(--accent-cyan);   border: 1px solid var(--accent-cyan); }
   .condition-fair      { background: rgba(255,214,10,0.15); color: var(--accent-yellow); border: 1px solid var(--accent-yellow); }
-  .condition-poor      { background: rgba(255,107,0,0.15); color: var(--accent-orange); border: 1px solid var(--accent-orange); }
-  .condition-critical  { background: rgba(255,45,85,0.15);  color: var(--accent-red);   border: 1px solid var(--accent-red); }
+  .condition-poor      { background: rgba(255,107,0,0.15);  color: var(--accent-orange); border: 1px solid var(--accent-orange); }
+  .condition-critical  { background: rgba(255,45,85,0.15);  color: var(--accent-red);    border: 1px solid var(--accent-red); }
 
   /* ── PARAMETER GRID ── */
   .param-grid {
@@ -263,107 +329,56 @@
   }
 
   .param-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    position: relative;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px;
     transition: border-color 0.3s, box-shadow 0.3s;
   }
 
-  .param-card:hover {
-    border-color: var(--accent-cyan);
-    box-shadow: var(--glow-cyan);
-  }
+  .param-card:hover { border-color: var(--accent-cyan); box-shadow: var(--glow-cyan); }
 
   .param-icon { font-size: 1.5rem; margin-bottom: 8px; }
 
   .param-name {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 4px;
+    font-size: 0.7rem; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
   }
 
   .param-value {
     font-family: 'Orbitron', monospace;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--accent-cyan);
-    line-height: 1;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--accent-cyan); line-height: 1;
   }
 
-  .param-unit {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    margin-left: 4px;
-  }
-
-  .param-range {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    margin-top: 6px;
-  }
+  .param-unit { font-size: 0.7rem; color: var(--text-secondary); margin-left: 4px; }
+  .param-range { font-size: 0.7rem; color: var(--text-dim); margin-top: 6px; }
 
   .param-bar {
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    margin-top: 8px;
-    overflow: hidden;
+    height: 4px; background: var(--border);
+    border-radius: 2px; margin-top: 8px; overflow: hidden;
   }
 
   .param-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: var(--accent-cyan);
-    transition: width 1s ease;
+    height: 100%; border-radius: 2px;
+    background: var(--accent-cyan); transition: width 1s ease;
   }
-
-  .param-status-ok     { color: var(--accent-green); }
-  .param-status-warn   { color: var(--accent-yellow); }
-  .param-status-danger { color: var(--accent-red); }
 
   /* ── COLOR DISPLAY ── */
   .color-display {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px; background: var(--bg-secondary);
+    border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px;
   }
 
   .color-swatch {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
+    width: 60px; height: 60px; border-radius: 10px;
     border: 2px solid var(--border);
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    transition: background-color 1s ease;
-    flex-shrink: 0;
+    transition: background-color 1s ease; flex-shrink: 0;
   }
 
-  .color-info h3 {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.9rem;
-    color: var(--text-primary);
-  }
-
-  .color-hex {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent-cyan);
-  }
-
-  .color-rgb {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    margin-top: 2px;
-  }
+  .color-info h3 { font-family: 'Orbitron', monospace; font-size: 0.9rem; color: var(--text-primary); }
+  .color-hex { font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; color: var(--accent-cyan); }
+  .color-rgb { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
 
   /* ── APPLICATIONS ── */
   .app-grid {
@@ -373,196 +388,79 @@
   }
 
   .app-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    transition: all 0.3s;
-    cursor: default;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px; transition: all 0.3s;
   }
 
-  .app-card:hover {
-    border-color: var(--accent-green);
-    box-shadow: var(--glow-green);
-    transform: translateY(-2px);
-  }
-
-  .app-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-
+  .app-card:hover { border-color: var(--accent-green); box-shadow: var(--glow-green); transform: translateY(-2px); }
+  .app-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
   .app-icon { font-size: 1.5rem; }
-
-  .app-name {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--text-primary);
-  }
-
-  .app-category {
-    font-size: 0.7rem;
-    color: var(--accent-cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .app-desc {
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-
-  .app-params {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    font-family: 'Share Tech Mono', monospace;
-  }
+  .app-name { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); }
+  .app-category { font-size: 0.7rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.05em; }
+  .app-desc { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4; }
+  .app-params { font-size: 0.7rem; color: var(--text-dim); font-family: 'Share Tech Mono', monospace; }
 
   .no-apps {
-    grid-column: 1/-1;
-    text-align: center;
-    color: var(--text-dim);
-    padding: 30px;
-    font-size: 0.9rem;
+    grid-column: 1/-1; text-align: center;
+    color: var(--text-dim); padding: 30px; font-size: 0.9rem;
   }
 
   /* ── DIAGNOSIS ── */
   .diagnosis-box {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 16px;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; margin-bottom: 16px;
   }
 
   .diagnosis-box h3 {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.75rem;
-    color: var(--accent-orange);
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    font-family: 'Orbitron', monospace; font-size: 0.75rem;
+    color: var(--accent-orange); letter-spacing: 0.1em;
+    margin-bottom: 10px; text-transform: uppercase;
   }
 
-  .diagnosis-text {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
+  .diagnosis-text { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
   .remedy-box h3 { color: var(--accent-green); }
 
   /* ── HISTORY TABLE ── */
-  .history-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.82rem;
-  }
+  .history-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
 
   .history-table th {
-    text-align: left;
-    padding: 10px 14px;
-    color: var(--text-dim);
-    border-bottom: 1px solid var(--border);
+    text-align: left; padding: 10px 14px;
+    color: var(--text-dim); border-bottom: 1px solid var(--border);
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
   }
 
-  .history-table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid rgba(30,58,95,0.3);
-    color: var(--text-secondary);
-  }
-
+  .history-table td { padding: 10px 14px; border-bottom: 1px solid rgba(30,58,95,0.3); color: var(--text-secondary); }
   .history-table tr:hover td { background: rgba(0,212,255,0.03); }
 
   .score-pill {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    font-family: 'Share Tech Mono', monospace;
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 700; font-family: 'Share Tech Mono', monospace;
   }
 
   /* ── SCAN BUTTON ── */
-  .scan-section {
-    text-align: center;
-    padding: 30px 0;
-  }
+  .scan-section { text-align: center; padding: 30px 0; }
 
   .scan-btn {
     background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
-    color: #000;
-    border: none;
-    padding: 16px 48px;
-    border-radius: 12px;
-    font-family: 'Orbitron', monospace;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: var(--glow-cyan);
+    color: #000; border: none; padding: 16px 48px; border-radius: 12px;
+    font-family: 'Orbitron', monospace; font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s; box-shadow: var(--glow-cyan);
   }
 
-  .scan-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(0,212,255,0.5);
-  }
-
+  .scan-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0,212,255,0.5); }
   .scan-btn:active { transform: scale(0.98); }
 
   .scan-status {
-    margin-top: 12px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    min-height: 20px;
-  }
-
-  /* ── TICKER ── */
-  .ticker {
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 8px 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .ticker-content {
-    display: inline-block;
-    white-space: nowrap;
-    animation: ticker 30s linear infinite;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent-cyan);
-    opacity: 0.7;
-  }
-
-  @keyframes ticker {
-    0% { transform: translateX(100vw); }
-    100% { transform: translateX(-100%); }
+    margin-top: 12px; font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem; color: var(--text-dim); min-height: 20px;
   }
 
   /* ── WAITING STATE ── */
-  .waiting-state {
-    text-align: center;
-    padding: 40px;
-    color: var(--text-dim);
-  }
+  .waiting-state { text-align: center; padding: 40px; color: var(--text-dim); }
 
   .waiting-icon {
-    font-size: 3rem;
-    margin-bottom: 12px;
-    opacity: 0.4;
+    font-size: 3rem; margin-bottom: 12px; opacity: 0.4;
     animation: float 3s ease-in-out infinite;
   }
 
@@ -571,19 +469,12 @@
     50% { transform: translateY(-8px); }
   }
 
-  .waiting-text {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--text-dim);
-  }
+  .waiting-text { font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; color: var(--text-dim); }
 
   /* ── GRID LAYOUTS ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
 
-  @media (max-width: 900px) {
-    .two-col, .three-col { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
 
   /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 6px; }
@@ -593,11 +484,8 @@
 
   /* ── FOOTER ── */
   footer {
-    text-align: center;
-    padding: 20px;
-    color: var(--text-dim);
-    font-size: 0.75rem;
-    border-top: 1px solid var(--border);
+    text-align: center; padding: 20px; color: var(--text-dim);
+    font-size: 0.75rem; border-top: 1px solid var(--border);
     font-family: 'Share Tech Mono', monospace;
   }
 </style>
@@ -614,10 +502,7 @@
     </div>
   </div>
   <div class="header-status">
-    <div class="status-dot">
-      <div class="dot"></div>
-      SYSTEM ONLINE
-    </div>
+    <div class="status-dot"><div class="dot"></div>SYSTEM ONLINE</div>
     <div class="header-time" id="clock">--:--:--</div>
   </div>
 </header>
@@ -625,7 +510,7 @@
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-content">
-    ⚗️ CoolantIQ v2.0 — Industrial Fluid Analysis Platform &nbsp;|&nbsp;
+    ⚗️ CoolantIQ v3.0 — Industrial Fluid Analysis Platform &nbsp;|&nbsp;
     🔬 7-Parameter Analysis: pH · TDS · Temperature · Turbidity · Color · UV Fluorescence · Vapor Signature &nbsp;|&nbsp;
     🏭 19 Application Classifications &nbsp;|&nbsp;
     📡 Real-time Cloud Analytics &nbsp;|&nbsp;
@@ -636,6 +521,55 @@
 
 <div class="main">
 
+  <!-- ══════════════════════════════════════════════════════════
+       pH INPUT PANEL — appears when Pico W sends sensor data
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="card" id="ph-panel-card" style="display:none;">
+    <div class="card-title">🧪 pH Input Required</div>
+    <div class="ph-panel visible" id="ph-panel">
+
+      <div class="ph-panel-title">📡 SENSOR DATA RECEIVED FROM PICO W</div>
+      <div class="ph-panel-subtitle">
+        All sensor readings have been received.<br>
+        Please check your pH strip and enter the value below to complete analysis.
+      </div>
+
+      <!-- Session ID -->
+      <div class="ph-session-id" id="ph-session-label">Session: —</div>
+
+      <!-- Sensor preview chips -->
+      <div class="sensor-preview" id="sensor-preview">
+        <!-- filled by JS -->
+      </div>
+
+      <!-- pH Strip Color Guide -->
+      <div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:10px;font-family:'Share Tech Mono',monospace;">
+        CLICK YOUR STRIP COLOR TO AUTO-FILL:
+      </div>
+      <div class="ph-strip-guide">
+        <div class="ph-chip" style="background:#d32f2f;color:#fff;" onclick="setPH(4.5)">🔴 4–5</div>
+        <div class="ph-chip" style="background:#e64a19;color:#fff;" onclick="setPH(5.5)">🟠 5–6</div>
+        <div class="ph-chip" style="background:#f57f17;color:#000;" onclick="setPH(6.5)">🟡 6–6.5</div>
+        <div class="ph-chip" style="background:#9e9d24;color:#fff;" onclick="setPH(7.0)">🟡 7</div>
+        <div class="ph-chip" style="background:#558b2f;color:#fff;" onclick="setPH(7.5)">🟢 7.5–8</div>
+        <div class="ph-chip" style="background:#2e7d32;color:#fff;" onclick="setPH(8.5)">🟢 8–9</div>
+        <div class="ph-chip" style="background:#1565c0;color:#fff;" onclick="setPH(9.5)">🔵 9–10</div>
+        <div class="ph-chip" style="background:#4527a0;color:#fff;" onclick="setPH(11.0)">🟣 10+</div>
+      </div>
+
+      <!-- Input + Submit -->
+      <div class="ph-input-row">
+        <input type="number" id="ph-value-input" class="ph-number-input"
+               min="0" max="14" step="0.1" value="7.0" placeholder="7.0">
+        <button class="ph-submit-btn" id="ph-submit-btn" onclick="submitPH()">
+          ⚗️ ANALYZE NOW
+        </button>
+      </div>
+
+      <div class="ph-status" id="ph-status">Enter pH from your strip and click Analyze Now</div>
+    </div>
+  </div>
+
   <!-- ── LIVE STATUS CARD ── -->
   <div class="card">
     <div class="card-title">📊 Live Analysis Result</div>
@@ -643,7 +577,9 @@
       <div class="waiting-state">
         <div class="waiting-icon">🧪</div>
         <div class="waiting-text">AWAITING COOLANT SAMPLE...</div>
-        <div style="margin-top:8px; font-size:0.75rem; color:var(--text-dim);">Press the SCAN button on the Pico W device or use the manual test below</div>
+        <div style="margin-top:8px;font-size:0.75rem;color:var(--text-dim);">
+          Pico W will send sensor data automatically · Then enter pH on this page
+        </div>
       </div>
     </div>
   </div>
@@ -652,8 +588,7 @@
   <div class="card">
     <div class="card-title">⚡ Parameter Readings</div>
     <div id="param-grid" class="param-grid">
-      <!-- Filled by JS -->
-      <div class="waiting-state" style="grid-column:1/-1; padding:20px">
+      <div class="waiting-state" style="grid-column:1/-1;padding:20px">
         <div class="waiting-text">NO DATA — SCAN A SAMPLE TO SEE READINGS</div>
       </div>
     </div>
@@ -661,8 +596,6 @@
 
   <!-- ── COLOR + DIAGNOSIS ROW ── -->
   <div class="two-col">
-
-    <!-- Color Analysis -->
     <div class="card">
       <div class="card-title">🎨 Coolant Color Analysis</div>
       <div id="color-section">
@@ -671,8 +604,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Diagnosis -->
     <div class="card">
       <div class="card-title">🔍 Diagnosis & Remedy</div>
       <div id="diagnosis-section">
@@ -681,7 +612,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- ── APPLICATION SUGGESTIONS ── -->
@@ -695,7 +625,7 @@
   <!-- ── MANUAL TEST PANEL ── -->
   <div class="card">
     <div class="card-title">🧰 Manual Test Panel (For Testing Without Hardware)</div>
-    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; margin-bottom:20px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px;">
       <div>
         <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">pH Level</label>
         <input type="number" id="t-ph" value="8.2" step="0.1" min="0" max="14"
@@ -703,27 +633,27 @@
       </div>
       <div>
         <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">TDS (ppm)</label>
-        <input type="number" id="t-tds" value="450" step="10"
+        <input type="number" id="t-tds" value="15"
           style="width:100%;padding:8px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:'Share Tech Mono',monospace;font-size:0.9rem;">
       </div>
       <div>
         <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">Temperature (°C)</label>
-        <input type="number" id="t-temp" value="42" step="1"
+        <input type="number" id="t-temp" value="42"
           style="width:100%;padding:8px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:'Share Tech Mono',monospace;font-size:0.9rem;">
       </div>
       <div>
-        <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">Turbidity</label>
-        <input type="number" id="t-turb" value="15" step="1"
+        <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">Turbidity (%)</label>
+        <input type="number" id="t-turb" value="35"
           style="width:100%;padding:8px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:'Share Tech Mono',monospace;font-size:0.9rem;">
       </div>
       <div>
         <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">UV Fluorescence</label>
-        <input type="number" id="t-uv" value="60" step="5"
+        <input type="number" id="t-uv" value="60"
           style="width:100%;padding:8px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:'Share Tech Mono',monospace;font-size:0.9rem;">
       </div>
       <div>
-        <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">Vapor Level</label>
-        <input type="number" id="t-vapor" value="120" step="10"
+        <label style="font-size:0.75rem;color:var(--text-dim);display:block;margin-bottom:4px;">Vapor Level (ppm)</label>
+        <input type="number" id="t-vapor" value="120"
           style="width:100%;padding:8px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:'Share Tech Mono',monospace;font-size:0.9rem;">
       </div>
       <div>
@@ -755,11 +685,8 @@
       <table class="history-table">
         <thead>
           <tr>
-            <th>Session</th>
-            <th>Time</th>
-            <th>Score</th>
-            <th>Condition</th>
-            <th>Top Application</th>
+            <th>Session</th><th>Time</th><th>Score</th>
+            <th>Condition</th><th>Top Application</th>
           </tr>
         </thead>
         <tbody id="history-tbody">
@@ -795,58 +722,169 @@
 <footer>
   CoolantIQ Industrial Fluid Analysis System &nbsp;|&nbsp;
   Powered by Raspberry Pi Pico W + Flask + Supabase &nbsp;|&nbsp;
-  7 Parameters · 19 Applications
+  7 Parameters · 19 Applications · pH via Dashboard
 </footer>
 
 <script>
-  // Clock
+  // ── Clock ────────────────────────────────────────────────────
   function updateClock() {
-    const now = new Date();
     document.getElementById('clock').textContent =
-      now.toTimeString().slice(0,8);
+      new Date().toTimeString().slice(0,8);
   }
-  setInterval(updateClock, 1000);
-  updateClock();
+  setInterval(updateClock, 1000); updateClock();
 
-  // Auto-refresh every 5 seconds
-  setInterval(fetchLatest, 5000);
+  // ── Auto-refresh ─────────────────────────────────────────────
+  setInterval(checkForPending, 4000);  // check for new Pico W data
+  setInterval(fetchLatest,     5000);  // refresh result display
 
+  // ── Parameter display config ─────────────────────────────────
   const PARAMS = [
-    { key:'ph_level',       label:'pH Level',         icon:'⚗️',  unit:'',     min:0,    max:14,   healthy:'7.0 – 9.5',  getStatus: v => v>=7&&v<=9.5?'ok':v>=6&&v<=11?'warn':'danger' },
-    { key:'tds_value',      label:'TDS',              icon:'💧',  unit:'ppm',  min:0,    max:5000, healthy:'< 1500 ppm', getStatus: v => v<500?'ok':v<1500?'warn':'danger' },
-    { key:'temperature',    label:'Temperature',      icon:'🌡️', unit:'°C',   min:0,    max:120,  healthy:'< 90°C',     getStatus: v => v<70?'ok':v<90?'warn':'danger' },
-    { key:'turbidity',      label:'Turbidity',        icon:'🌫️', unit:'',     min:0,    max:100,  healthy:'< 30',       getStatus: v => v<30?'ok':v<60?'warn':'danger' },
-    { key:'uv_fluorescence',label:'UV Fluorescence',  icon:'🔆',  unit:'',     min:0,    max:500,  healthy:'< 100',      getStatus: v => v<100?'ok':v<300?'warn':'danger' },
-    { key:'vapor_level',    label:'Vapor Signature',  icon:'💨',  unit:'ppm',  min:0,    max:800,  healthy:'< 200 ppm',  getStatus: v => v<200?'ok':v<400?'warn':'danger' },
+    { key:'ph_level',        label:'pH Level',        icon:'⚗️',  unit:'',    min:0, max:14,  healthy:'7.0 – 9.5',  getStatus: v => v>=7&&v<=9.5?'ok':v>=6&&v<=11?'warn':'danger' },
+    { key:'tds_value',       label:'TDS',             icon:'💧',  unit:'ppm', min:0, max:700, healthy:'< 200 ppm',  getStatus: v => v<50?'ok':v<200?'warn':'danger' },
+    { key:'temperature',     label:'Temperature',     icon:'🌡️', unit:'°C',  min:0, max:120, healthy:'< 90°C',     getStatus: v => v<70?'ok':v<90?'warn':'danger' },
+    { key:'turbidity',       label:'Turbidity',       icon:'🌫️', unit:'%',   min:0, max:100, healthy:'< 30%',      getStatus: v => v<10?'ok':v<35?'warn':'danger' },
+    { key:'uv_fluorescence', label:'UV Fluorescence', icon:'🔆',  unit:'',    min:0, max:500, healthy:'< 100',      getStatus: v => v<100?'ok':v<300?'warn':'danger' },
+    { key:'vapor_level',     label:'Vapor Signature', icon:'💨',  unit:'ppm', min:0, max:800, healthy:'< 200 ppm',  getStatus: v => v<200?'ok':v<400?'warn':'danger' },
   ];
 
-  function getConditionClass(cond) {
-    if (!cond) return '';
-    const c = cond.toLowerCase();
-    if (c.includes('excellent')) return 'condition-excellent';
-    if (c.includes('good'))      return 'condition-good';
-    if (c.includes('fair'))      return 'condition-fair';
-    if (c.includes('poor'))      return 'condition-poor';
-    if (c.includes('critical'))  return 'condition-critical';
-    return 'condition-good';
+  // ── pH strip quick-fill ───────────────────────────────────────
+  function setPH(val) {
+    document.getElementById('ph-value-input').value = val;
   }
 
-  function getScoreColor(score) {
-    if (score >= 80) return 'var(--accent-green)';
-    if (score >= 60) return 'var(--accent-cyan)';
-    if (score >= 40) return 'var(--accent-yellow)';
-    if (score >= 20) return 'var(--accent-orange)';
-    return 'var(--accent-red)';
+  // ── Check for pending sensor data (Pico W sent data, waiting pH) ─
+  async function checkForPending() {
+    try {
+      const r = await fetch('/pending');
+      const d = await r.json();
+      const panel = document.getElementById('ph-panel-card');
+      if (d && d.session_id) {
+        // Show pH panel
+        panel.style.display = 'block';
+        document.getElementById('ph-session-label').textContent =
+          'Session: ' + d.session_id;
+
+        // Show sensor preview chips
+        document.getElementById('sensor-preview').innerHTML = [
+          { label:'TDS',   value: d.tds?.toFixed(1)       + ' ppm' },
+          { label:'TEMP',  value: d.temperature?.toFixed(1) + ' °C' },
+          { label:'TURB',  value: d.turbidity?.toFixed(1)  + ' %'  },
+          { label:'VAPOR', value: d.vapor_level?.toFixed(1) + ' ppm'},
+          { label:'COLOR', value: `R${d.color_r} G${d.color_g} B${d.color_b}` },
+        ].map(c =>
+          `<div class="sensor-chip">${c.label}: <span>${c.value}</span></div>`
+        ).join('');
+
+        // Scroll to pH panel
+        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        panel.style.display = 'none';
+      }
+    } catch(e) {}
   }
 
+  // ── Submit pH from website ────────────────────────────────────
+  async function submitPH() {
+    const ph  = parseFloat(document.getElementById('ph-value-input').value);
+    const btn = document.getElementById('ph-submit-btn');
+    const statusEl = document.getElementById('ph-status');
+
+    if (isNaN(ph) || ph < 0 || ph > 14) {
+      statusEl.style.color = 'var(--accent-red)';
+      statusEl.textContent = '❌ Invalid pH — enter a value between 0 and 14';
+      return;
+    }
+
+    btn.disabled = true;
+    statusEl.style.color = 'var(--accent-cyan)';
+    statusEl.textContent = '⏳ Running full analysis...';
+
+    try {
+      const r = await fetch('/submit_ph', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ph })
+      });
+      const d = await r.json();
+
+      if (r.ok) {
+        statusEl.style.color = 'var(--accent-green)';
+        statusEl.textContent =
+          `✅ ANALYSIS COMPLETE — Score: ${d.score}% — ${d.condition}`;
+
+        // Hide pH panel after success
+        setTimeout(() => {
+          document.getElementById('ph-panel-card').style.display = 'none';
+        }, 3000);
+
+        renderResult({ ...d, session_id: d.session_id });
+        await fetchLatest();
+        loadHistory();
+      } else {
+        statusEl.style.color = 'var(--accent-red)';
+        statusEl.textContent = '❌ ' + (d.error || 'Analysis failed');
+      }
+    } catch(e) {
+      statusEl.style.color = 'var(--accent-red)';
+      statusEl.textContent = '❌ Server error — check connection';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  // ── Manual test panel ─────────────────────────────────────────
+  async function submitManualTest() {
+    const statusEl = document.getElementById('scan-status');
+    statusEl.style.color = 'var(--accent-cyan)';
+    statusEl.textContent = '⏳ ANALYZING SAMPLE...';
+
+    const payload = {
+      ph:              parseFloat(document.getElementById('t-ph').value),
+      tds:             parseFloat(document.getElementById('t-tds').value),
+      temperature:     parseFloat(document.getElementById('t-temp').value),
+      turbidity:       parseFloat(document.getElementById('t-turb').value),
+      uv_fluorescence: parseFloat(document.getElementById('t-uv').value),
+      vapor_level:     parseFloat(document.getElementById('t-vapor').value),
+      color_r:         parseInt(document.getElementById('t-r').value),
+      color_g:         parseInt(document.getElementById('t-g').value),
+      color_b:         parseInt(document.getElementById('t-b').value),
+      session_id:      'MANUAL-' + Date.now().toString(36).toUpperCase()
+    };
+
+    try {
+      const r = await fetch('/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const d = await r.json();
+      statusEl.style.color = 'var(--accent-green)';
+      statusEl.textContent =
+        `✅ ANALYSIS COMPLETE — Score: ${d.score}% — ${d.applications?.length||0} applications matched`;
+      await fetchLatest();
+    } catch(e) {
+      statusEl.style.color = 'var(--accent-red)';
+      statusEl.textContent = '❌ ANALYSIS FAILED — Check server connection';
+    }
+  }
+
+  // ── Fetch and render latest result ───────────────────────────
+  async function fetchLatest() {
+    try {
+      const r = await fetch('/latest');
+      const d = await r.json();
+      if (d && d.condition) renderResult(d);
+    } catch(e) {}
+  }
+
+  // ── Render result to all sections ────────────────────────────
   function renderResult(d) {
     if (!d || !d.condition) return;
 
-    const score = d.score || 0;
-    const circumference = 352;
-    const offset = circumference - (score / 100) * circumference;
-    const scoreColor = getScoreColor(score);
-    const condClass = getConditionClass(d.condition);
+    const score      = d.score || 0;
+    const offset     = 352 - (score / 100) * 352;
+    const scoreColor = score>=80?'var(--accent-green)':score>=60?'var(--accent-cyan)':score>=40?'var(--accent-yellow)':score>=20?'var(--accent-orange)':'var(--accent-red)';
+    const condClass  = getConditionClass(d.condition);
 
     // Score card
     document.getElementById('live-result').innerHTML = `
@@ -866,23 +904,27 @@
           <h3>Coolant Quality Assessment</h3>
           <span class="condition-badge ${condClass}">${d.condition}</span>
           <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
-            Session: <span style="color:var(--accent-cyan);font-family:'Share Tech Mono',monospace;">${d.session_id || '—'}</span>
+            Session: <span style="color:var(--accent-cyan);font-family:'Share Tech Mono',monospace;">${d.session_id||'—'}</span>
           </div>
           <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
-            Color: <span style="color:var(--text-primary);">${d.coolant_color_name || '—'}</span>
-            &nbsp;
-            <span style="background:${d.color_hex||'#888'};padding:2px 10px;border-radius:4px;font-size:0.7rem;">&nbsp;</span>
+            Color: <span style="color:var(--text-primary);">${d.coolant_color_name||'—'}</span>
+            &nbsp;<span style="background:${d.color_hex||'#888'};padding:2px 10px;border-radius:4px;font-size:0.7rem;">&nbsp;</span>
+          </div>
+          <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+            pH: <span style="color:var(--accent-green);font-family:'Share Tech Mono',monospace;font-weight:700;">${d.ph_level?.toFixed(1)||'—'}</span>
+            &nbsp;(entered via dashboard)
           </div>
         </div>
       </div>`;
 
     // Parameters
     document.getElementById('param-grid').innerHTML = PARAMS.map(p => {
-      const val = d[p.key] !== undefined ? Number(d[p.key]).toFixed(p.key==='ph_level'?1:0) : '—';
-      const pct = Math.min(100, (d[p.key] / p.max) * 100);
-      const st  = d[p.key] !== undefined ? p.getStatus(d[p.key]) : 'ok';
-      const stColor = st==='ok' ? 'var(--accent-green)' : st==='warn' ? 'var(--accent-yellow)' : 'var(--accent-red)';
-      const stIcon  = st==='ok' ? '✓' : st==='warn' ? '⚠' : '✗';
+      const raw = d[p.key];
+      const val = raw !== undefined ? Number(raw).toFixed(p.key==='ph_level'?1:p.key==='tds_value'?1:0) : '—';
+      const pct = Math.min(100, ((raw||0) / p.max) * 100);
+      const st  = raw !== undefined ? p.getStatus(raw) : 'ok';
+      const stColor = st==='ok'?'var(--accent-green)':st==='warn'?'var(--accent-yellow)':'var(--accent-red)';
+      const stIcon  = st==='ok'?'✓':st==='warn'?'⚠':'✗';
       return `
         <div class="param-card">
           <div class="param-icon">${p.icon}</div>
@@ -899,12 +941,12 @@
         </div>`;
     }).join('');
 
-    // Color
+    // Color section
     document.getElementById('color-section').innerHTML = `
       <div class="color-display">
         <div class="color-swatch" style="background:${d.color_hex||'#888'}"></div>
         <div class="color-info">
-          <h3>${d.coolant_color_name || 'Unknown'}</h3>
+          <h3>${d.coolant_color_name||'Unknown'}</h3>
           <div class="color-hex">${(d.color_hex||'').toUpperCase()}</div>
           <div class="color-rgb">R:${d.color_r||0} G:${d.color_g||0} B:${d.color_b||0}</div>
         </div>
@@ -914,9 +956,9 @@
         ${getColorMeaning(d.coolant_color_name)}
       </div>`;
 
-    // Diagnosis
-    const parts = (d.diagnosis || '').split(' | ');
-    const remedyParts = (d.remedy || '').split(' | ');
+    // Diagnosis & Remedy
+    const parts       = (d.diagnosis||'').split(' | ');
+    const remedyParts = (d.remedy||'').split(' | ');
     document.getElementById('diagnosis-section').innerHTML = `
       <div class="diagnosis-box">
         <h3>⚠ DIAGNOSIS</h3>
@@ -929,30 +971,37 @@
 
     // Applications
     const apps = d.applications || d.application_suggestions || [];
-    if (apps.length > 0) {
-      document.getElementById('app-grid').innerHTML = apps.map(a => `
-        <div class="app-card">
-          <div class="app-card-header">
-            <div class="app-icon">${a.icon}</div>
-            <div>
-              <div class="app-name">${a.name}</div>
-              <div class="app-category">${a.category}</div>
+    document.getElementById('app-grid').innerHTML = apps.length > 0
+      ? apps.map(a => `
+          <div class="app-card">
+            <div class="app-card-header">
+              <div class="app-icon">${a.icon}</div>
+              <div>
+                <div class="app-name">${a.name}</div>
+                <div class="app-category">${a.category}</div>
+              </div>
             </div>
-          </div>
-          <div class="app-desc">${a.description}</div>
-          <div class="app-params">${a.parameters}</div>
-        </div>`).join('');
-    } else {
-      document.getElementById('app-grid').innerHTML =
-        '<div class="no-apps">⚠ No matching applications found. Coolant may need replacement.</div>';
-    }
+            <div class="app-desc">${a.description}</div>
+            <div class="app-params">${a.parameters}</div>
+          </div>`).join('')
+      : '<div class="no-apps">⚠ No matching applications found. Coolant may need replacement.</div>';
 
-    // Refresh history
     loadHistory();
   }
 
+  function getConditionClass(cond) {
+    if (!cond) return '';
+    const c = cond.toLowerCase();
+    if (c.includes('excellent')) return 'condition-excellent';
+    if (c.includes('good'))      return 'condition-good';
+    if (c.includes('fair'))      return 'condition-fair';
+    if (c.includes('poor'))      return 'condition-poor';
+    if (c.includes('critical'))  return 'condition-critical';
+    return 'condition-good';
+  }
+
   function getColorMeaning(colorName) {
-    const meanings = {
+    const m = {
       "Crystal Clear":  "Pure or water-based coolant. Excellent for electronics, food-grade, and pharmaceutical applications.",
       "Light Green":    "Standard ethylene glycol antifreeze (IAT). Common in older automotive systems.",
       "Green":          "Traditional green antifreeze. Widely used in petrol engines with silicate inhibitors.",
@@ -964,51 +1013,10 @@
       "Milky White":    "Emulsified metalworking fluid or contaminated coolant. Check for oil intrusion.",
       "Dark Amber":     "Gear oil or heavily degraded coolant. High contamination likely.",
       "Brown":          "Severely oxidised or contaminated. Replacement strongly recommended.",
-      "Transparent":    "Water or very dilute coolant. May lack adequate corrosion protection.",
+      "Clear Water":    "Water or very dilute coolant. May lack adequate corrosion protection.",
+      "Transparent":    "Highly diluted fluid. Verify coolant concentration.",
     };
-    return meanings[colorName] || "Perform detailed parameter analysis for classification.";
-  }
-
-  async function fetchLatest() {
-    try {
-      const r = await fetch('/latest');
-      const d = await r.json();
-      if (d && d.condition) renderResult(d);
-    } catch(e) {}
-  }
-
-  async function submitManualTest() {
-    const statusEl = document.getElementById('scan-status');
-    statusEl.style.color = 'var(--accent-cyan)';
-    statusEl.textContent = '⏳ ANALYZING SAMPLE...';
-
-    const payload = {
-      ph:           parseFloat(document.getElementById('t-ph').value),
-      tds:          parseFloat(document.getElementById('t-tds').value),
-      temperature:  parseFloat(document.getElementById('t-temp').value),
-      turbidity:    parseFloat(document.getElementById('t-turb').value),
-      uv_fluorescence: parseFloat(document.getElementById('t-uv').value),
-      vapor_level:  parseFloat(document.getElementById('t-vapor').value),
-      color_r:      parseInt(document.getElementById('t-r').value),
-      color_g:      parseInt(document.getElementById('t-g').value),
-      color_b:      parseInt(document.getElementById('t-b').value),
-      session_id:   'MANUAL-' + Date.now().toString(36).toUpperCase()
-    };
-
-    try {
-      const r = await fetch('/analyze', {
-        method:  'POST',
-        headers: {'Content-Type':'application/json'},
-        body:    JSON.stringify(payload)
-      });
-      const d = await r.json();
-      statusEl.style.color = 'var(--accent-green)';
-      statusEl.textContent = `✅ ANALYSIS COMPLETE — Score: ${d.score}% — ${d.applications?.length||0} applications matched`;
-      await fetchLatest();
-    } catch(e) {
-      statusEl.style.color = 'var(--accent-red)';
-      statusEl.textContent = '❌ ANALYSIS FAILED — Check server connection';
-    }
+    return m[colorName] || "Perform detailed parameter analysis for classification.";
   }
 
   async function loadHistory() {
@@ -1025,15 +1033,16 @@
           <td>${(h.recorded_at||'').slice(0,16).replace('T',' ')}</td>
           <td><span class="score-pill" style="background:rgba(0,255,136,0.1);color:${color};border:1px solid ${color};">${Math.round(score)}%</span></td>
           <td>${h.condition||'—'}</td>
-          <td>${(h.application_suggestions?.[0]?.name)||'—'}</td>
+          <td>${(h.application_suggestions?.[0]?.name)||h.top_application||'—'}</td>
         </tr>`;
       }).join('');
     } catch(e) {}
   }
 
-  // Initial fetch
+  // Initial load
   fetchLatest();
   loadHistory();
+  checkForPending();
 </script>
 </body>
 </html>
