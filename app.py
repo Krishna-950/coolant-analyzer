@@ -166,7 +166,7 @@ def match_applications(ph, tds, temp, turbidity, r, g, b, uv, vapor):
             "category": "Automotive — Light Duty",
             "criteria": lambda: (
                 7.5  <= ph        <= 11.0 and
-                35.0 <= turbidity <= 65.0 and
+                30.0 <= turbidity <= 80.0 and
                 uv   <  150
             ),
             "description": "Ethylene glycol coolant for petrol engines per ASTM D3306. Water-based inhibitor solution confirmed by turbidity zone 35–65%.",
@@ -182,7 +182,7 @@ def match_applications(ph, tds, temp, turbidity, r, g, b, uv, vapor):
             "category": "Automotive — Heavy Duty",
             "criteria": lambda: (
                 8.0  <= ph        <= 10.5 and
-                35.0 <= turbidity <= 65.0 and
+                80.0 <= turbidity <= 100.0 and
                 uv   <  200
             ),
             "description": "Heavy duty coolant with nitrite/molybdate inhibitors per ASTM D6210. Water-based composition confirmed by turbidity 35–65%.",
