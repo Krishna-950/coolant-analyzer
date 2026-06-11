@@ -215,7 +215,7 @@ def match_applications(ph, tds, temp, turbidity, r, g, b, uv, vapor):
             "criteria": lambda: (
                 7.0  <= ph        <= 11.5 and
                 68.0 <= turbidity <= 82.0 and
-                400  <= vapor     <= 550
+                70  <= vapor     <= 200
             ),
             "description": "DOT brake fluid per SAE J1703 / FMVSS 116. Glycol-ether composition confirmed by turbidity 68–82% and vapor signature ~474 ppm (sensor-verified).",
             "parameters":  "pH 7.0–11.5 (SAE J1703) | Turbidity 68–82% (sensor-verified) | Vapor 400–550 ppm (sensor-verified)"
@@ -247,7 +247,7 @@ def match_applications(ph, tds, temp, turbidity, r, g, b, uv, vapor):
             "criteria": lambda: (
                 5.5  <= ph        <= 8.5  and
                 68.0 <= turbidity <= 82.0 and
-                vapor >= 600      and
+                vapor >= 70      and
                 temp  <= 120
             ),
             "description": "EP gear lubricant per ISO 3448 / DIN 51517. Heavy oil confirmed by turbidity 68–82% and elevated vapor ~697 ppm (sensor-verified).",
