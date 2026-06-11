@@ -740,9 +740,9 @@
   // ── Parameter display config ─────────────────────────────────
   const PARAMS = [
     { key:'ph_level',        label:'pH Level',        icon:'⚗️',  unit:'',    min:0, max:14,  healthy:'7.0 – 9.5',  getStatus: v => v>=7&&v<=9.5?'ok':v>=6&&v<=11?'warn':'danger' },
-    { key:'tds_value',       label:'TDS',             icon:'💧',  unit:'ppm', min:0, max:700, healthy:'< 200 ppm',  getStatus: v => v<50?'ok':v<200?'warn':'danger' },
+    { key:'tds_value',       label:'TDS',             icon:'💧',  unit:'ppm', min:0, max:700, healthy:'~0 (hardware)', getStatus: v => v<200?'ok':v<500?'warn':'danger' },
     { key:'temperature',     label:'Temperature',     icon:'🌡️', unit:'°C',  min:0, max:120, healthy:'< 90°C',     getStatus: v => v<70?'ok':v<90?'warn':'danger' },
-    { key:'turbidity',       label:'Turbidity',       icon:'🌫️', unit:'%',   min:0, max:100, healthy:'< 30%',      getStatus: v => v<10?'ok':v<35?'warn':'danger' },
+    { key:'turbidity',       label:'Turbidity',       icon:'🌫️', unit:'%',   min:0, max:100, healthy:'Zone-based', getStatus: v => v<=8?'ok':v<=85?'warn':'danger' },
     { key:'uv_fluorescence', label:'UV Fluorescence', icon:'🔆',  unit:'',    min:0, max:500, healthy:'< 100',      getStatus: v => v<100?'ok':v<300?'warn':'danger' },
     { key:'vapor_level',     label:'Vapor Signature', icon:'💨',  unit:'ppm', min:0, max:800, healthy:'< 200 ppm',  getStatus: v => v<200?'ok':v<400?'warn':'danger' },
   ];
