@@ -150,7 +150,7 @@ def match_applications(ph, tds, temp, turbidity, r, g, b, uv, vapor):
             "category": "Industrial Machining",
             "criteria": lambda: (
                 8.6  <= ph        <= 9.5  and
-                70.0 <= turbidity <= 85.0 and
+                30.0 <= turbidity <= 85.0 and
                 20   <= temp      <= 55
             ),
             "description": "Precision CNC semi-synthetic coolant per ASTM B860. Alkaline pH prevents bacterial growth. Sensor confirms CNC coolant zone (turb 70–85%).",
@@ -488,7 +488,7 @@ def get_diagnosis_remedy(ph, tds, temp, turbidity, uv, vapor):
     if turbidity > 92:
         issues.append("Turbidity in diesel/air zone (>92%) — non-conductive oil or empty probe")
         remedies.append("Verify fluid is present on probe. Check for diesel oil contamination.")
-    elif turbidity > 85:
+    elif turbidity > 30:
         issues.append("Turbidity above CNC zone (>85%) — approaching non-conductive boundary")
         remedies.append("Check fluid type. If CNC coolant, verify concentration is correct.")
     elif turbidity > 82:
